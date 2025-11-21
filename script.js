@@ -73,6 +73,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // تهيئة عداد الدرجات
     initGradeCounters();
+    
+    // تهيئة أقسام المدرسة
+    initDivisions();
+    
+    // تهيئة بطاقات الأساتذة
+    initTeachers();
 });
 
 // وظيفة تهيئة علامات التبويب للطلاب
@@ -173,8 +179,8 @@ function initSmoothScroll() {
             // إغلاق القائمة المتنقلة إذا كانت مفتوحة
             const mobileMenu = document.querySelector('.mobile-menu');
             const nav = document.querySelector('nav ul');
-            if (nav.style.display === 'flex') {
-                nav.style.display = 'none';
+            if (nav.classList.contains('show')) {
+                nav.classList.remove('show');
                 mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
             }
         });
@@ -204,21 +210,11 @@ function initMobileMenu() {
     const nav = document.querySelector('nav ul');
     
     mobileMenuBtn.addEventListener('click', function() {
-        if (nav.style.display === 'flex') {
-            nav.style.display = 'none';
+        if (nav.classList.contains('show')) {
+            nav.classList.remove('show');
             this.innerHTML = '<i class="fas fa-bars"></i>';
         } else {
-            nav.style.display = 'flex';
-            nav.style.flexDirection = 'column';
-            nav.style.position = 'absolute';
-            nav.style.top = '100%';
-            nav.style.right = '0';
-            nav.style.background = 'rgba(255, 255, 255, 0.2)';
-            nav.style.backdropFilter = 'blur(10px)';
-            nav.style.width = '200px';
-            nav.style.padding = '20px';
-            nav.style.borderRadius = '0 0 0 15px';
-            nav.style.gap = '15px';
+            nav.classList.add('show');
             this.innerHTML = '<i class="fas fa-times"></i>';
         }
     });
@@ -226,7 +222,7 @@ function initMobileMenu() {
     // إغلاق القائمة عند النقر خارجها
     document.addEventListener('click', function(e) {
         if (!e.target.closest('nav') && !e.target.closest('.mobile-menu')) {
-            nav.style.display = 'none';
+            nav.classList.remove('show');
             mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
         }
     });
@@ -261,4 +257,84 @@ function initContactForm() {
         alert('شكراً لتواصلكم! سنرد على رسالتكم في أقرب وقت ممكن.');
         contactForm.reset();
     });
+}
+
+// وظيفة تهيئة أقسام المدرسة
+function initDivisions() {
+    const divisionsGrid = document.querySelector('.divisions-grid');
+    const divisions = [
+        { name: '5AF', stage: 'ابتدائي' },
+        { name: '6AF', stage: 'ابتدائي' },
+        { name: '1AS', stage: 'إعدادي' },
+        { name: '2AS', stage: 'إعدادي' },
+        { name: '3AS', stage: 'إعدادي' },
+        { name: '4AS', stage: 'إعدادي' },
+        { name: '5C&D', stage: 'ثانوي' },
+        { name: '6C&D', stage: 'ثانوي' },
+        { name: '7D الباكالوريا', stage: 'ثانوي' }
+    ];
+    
+    divisions.forEach(division => {
+        const card = document.createElement('div');
+        card.className = 'division-card fade-in';
+        card.innerHTML = `
+            <div class="division-header">
+                <div class="division-name">${division.name}</div>
+                <div class="division-stage">${division.stage}</div>
+            </div>
+            <div class="division-info">
+                <div class="info-item">
+                    <span class="info-label">عدد التلاميذ:</span>
+                    <span class="info-value">سيُضاف قريباً</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">الجدول الزمني:</span>
+                    <span class="info-value">سيُضاف قريباً</span>
+                </div>
+            </div>
+            <div class="info-placeholder">
+                <p>معلومات مفصلة عن القسم والاساتذة ستُضاف قريباً</p>
+            </div>
+        `;
+        divisionsGrid.appendChild(card);
+    });
+    
+    // إعادة تهيئة تأثيرات الظهور للعناصر الجديدة
+    initScrollAnimations();
+}
+
+// وظيفة تهيئة بطاقات الأساتذة
+function initTeachers() {
+    const teachersGrid = document.querySelector('.teachers-grid');
+    const teachers = [
+        { 
+            name: 'الأستاذ المصطفى ولد يحيى', 
+            subject: 'أستاذ الفيزياء والكيمياء',
+            image: 'teacher1.jpg'
+        },
+        { 
+            name: 'الأستاذ النهاه', 
+            subject: 'أستاذ الرياضيات',
+            image: 'teacher2.jpg'
+        }
+    ];
+    
+    teachers.forEach(teacher => {
+        const card = document.createElement('div');
+        card.className = 'teacher-card fade-in';
+        card.innerHTML = `
+            <div class="teacher-img">
+                <img src="images/${teacher.image}" alt="${teacher.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="img-placeholder">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+            </div>
+            <h3>${teacher.name}</h3>
+            <p class="teacher-subject">${teacher.subject}</p>
+        `;
+        teachersGrid.appendChild(card);
+    });
+    
+    // إعادة تهيئة تأثيرات الظهور للعناصر الجديدة
+    initScrollAnimations();
 }

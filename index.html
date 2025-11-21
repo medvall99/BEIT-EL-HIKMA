@@ -5,8 +5,1052 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مجمع مدارس بيت الحكمة الحرة | Écoles privées Beit El-Hikma</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #183B8D;
+            --primary-light: #2a4db3;
+            --secondary: #6c757d;
+            --accent: #FF6B6B;
+            --accent-light: #FF9999;
+            --gold: #FFD700;
+            --white: #ffffff;
+            --bg-color: #f0f2f5;
+            --text-color: #333;
+            --text-light: #6c757d;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #183B8D 0%, #2a4db3 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 0;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: var(--primary);
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 15px;
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            background: rgba(24, 59, 141, 0.08);
+            color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 15px;
+            left: 15px;
+            height: 2px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        nav a.active::after {
+            transform: scaleX(1);
+        }
+
+        .lang-toggle {
+            background: rgba(24, 59, 141, 0.1);
+            border: none;
+            color: var(--primary);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .lang-toggle:hover {
+            background: rgba(24, 59, 141, 0.2);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 20px;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .shape-3 {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .shape-4 {
+            width: 100px;
+            height: 100px;
+            top: 30%;
+            right: 25%;
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero-glass {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .french-title {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .levels {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .motto {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .btn {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            background: var(--accent);
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Sections Common Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .section-title h2 i {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Wave Divider */
+        .wave-divider {
+            height: 50px;
+            width: 100%;
+            background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            margin: 40px 0;
+        }
+
+        /* Divisions Section */
+        .divisions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .division-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            transition: var(--transition);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .division-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .division-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .division-card:hover::before {
+            opacity: 1;
+        }
+
+        .division-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .division-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .division-stage {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .division-info {
+            margin-bottom: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .info-value {
+            font-weight: 500;
+        }
+
+        .info-placeholder {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Generation Section */
+        .generation-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .generation-glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .generation-glass::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .generation-glass:hover::before {
+            opacity: 1;
+        }
+
+        .generation-img {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .generation-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .generation-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, transparent 100%);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .generation-glass h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .generation-glass p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        /* Top Students Section */
+        .students-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: var(--primary);
+        }
+
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .student-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            color: white;
+        }
+
+        .student-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .student-rank {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: white;
+            color: var(--primary);
+            border-radius: 50%;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .student-name {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .student-grade {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Memories Gallery Section */
+        .memories-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .memory-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .memory-img {
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .memory-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .memory-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, transparent 100%);
+        }
+
+        .memory-content {
+            padding: 20px;
+        }
+
+        .memory-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .memory-content p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .memory-date {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .memories-btn {
+            text-align: center;
+        }
+
+        /* Teachers Section */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .teacher-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            color: white;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .teacher-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: rgba(255, 255, 255, 0.7);
+            overflow: hidden;
+        }
+
+        .teacher-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .teacher-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .teacher-subject {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            color: white;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .contact-text {
+            flex: 1;
+        }
+
+        .contact-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .contact-text p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        }
+
+        .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            text-align: center;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: #183B8D;
+            padding: 40px 0 20px;
+            color: white;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 30px;
+        }
+
+        .developer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .dev-signature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dev-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .dev-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, #ffffff 0%, #e6e6e6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .dev-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, white, transparent);
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Placeholder Styles */
+        .logo-placeholder, .img-placeholder {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .french-title {
+                font-size: 1.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: var(--white);
+                width: 100%;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                border-top: 1px solid rgba(24, 59, 141, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .french-title {
+                font-size: 1.3rem;
+            }
+            
+            .levels {
+                font-size: 1.1rem;
+            }
+            
+            .hero-glass, .generation-glass, .contact-info, .contact-form {
+                padding: 30px 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .dev-name {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-text h1 {
+                font-size: 20px;
+            }
+            
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+            
+            .french-title {
+                font-size: 1.1rem;
+            }
+            
+            .students-grid, .memories-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .divisions-grid, .teachers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dev-name {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -15,7 +1059,11 @@
             <div class="header-content">
                 <div class="logo">
                     <div class="logo-img">
+                        <!-- رابط شعار المدرسة -->
                         <img src="logo-removebg-preview.png" alt="شعار بيت الحكمة">
+                        <div class="logo-placeholder" style="display:none">
+                            <i class="fas fa-school"></i>
+                        </div>
                     </div>
                     <div class="logo-text">
                         <h1>بيت الحكمة</h1>
@@ -29,6 +1077,7 @@
                         <li><a href="#divisions">الأقسام</a></li>
                         <li><a href="#generation">الجيل الأول</a></li>
                         <li><a href="#students">المتفوقون</a></li>
+                        <li><a href="#memories">معرض الذكريات</a></li>
                         <li><a href="#teachers">أساتذة</a></li>
                         <li><a href="#contact">اتصل بنا</a></li>
                     </ul>
@@ -47,6 +1096,14 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <div class="hero-background">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-glass fade-in">
@@ -65,192 +1122,11 @@
         <div class="container">
             <div class="section-title fade-in">
                 <h2><i class="fas fa-school"></i> أقسام المدرسة</h2>
-                <p>الأقسام التعليمية  </p>
+                <p>الأقسام التعليمية</p>
             </div>
             
             <div class="divisions-grid">
-                <!-- المرحلة الابتدائية - قسمان -->
-                <div class="division-card fade-in">
-                    <div class="division-header">
-                        <div class="division-name">5AF</div>
-                        <div class="division-stage">ابتدائي</div>
-                    </div>
-                    <div class="division-info">
-                        <div class="info-item">
-                            <span class="info-label">عدد التلاميذ:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">الجدول الزمني:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                    </div>
-                    <div class="info-placeholder">
-                        <p>معلومات مفصلة عن القسم والاساتذة ستُضاف قريباً</p>
-                    </div>
-                </div>
-                
-                <div class="division-card fade-in">
-                    <div class="division-header">
-                        <div class="division-name">6AF</div>
-                        <div class="division-stage">ابتدائي</div>
-                    </div>
-                    <div class="division-info">
-                        <div class="info-item">
-                            <span class="info-label">عدد التلاميذ:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">الجدول الزمني:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                    </div>
-                    <div class="info-placeholder">
-                        <p>معلومات مفصلة عن القسم والاساتذة ستُضاف قريباً</p>
-                    </div>
-                </div>
-
-                <!-- المرحلة الإعدادية - 4 أقسام -->
-                <div class="division-card fade-in">
-                    <div class="division-header">
-                        <div class="division-name">1AS</div>
-                        <div class="division-stage">إعدادي</div>
-                    </div>
-                    <div class="division-info">
-                        <div class="info-item">
-                            <span class="info-label">عدد التلاميذ:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">الجدول الزمني:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                    </div>
-                    <div class="info-placeholder">
-                        <p>معلومات مفصلة عن القسم والاساتذة ستُضاف قريباً</p>
-                    </div>
-                </div>
-                
-                <div class="division-card fade-in">
-                    <div class="division-header">
-                        <div class="division-name">2AS</div>
-                        <div class="division-stage">إعدادي</div>
-                    </div>
-                    <div class="division-info">
-                        <div class="info-item">
-                            <span class="info-label">عدد التلاميذ:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">الجدول الزمني:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                    </div>
-                    <div class="info-placeholder">
-                        <p>معلومات مفصلة عن القسم والاساتذة ستُضاف قريباً</p>
-                    </div>
-                </div>
-                
-                <div class="division-card fade-in">
-                    <div class="division-header">
-                        <div class="division-name">3AS</div>
-                        <div class="division-stage">إعدادي</div>
-                    </div>
-                    <div class="division-info">
-                        <div class="info-item">
-                            <span class="info-label">عدد التلاميذ:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">الجدول الزمني:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                    </div>
-                    <div class="info-placeholder">
-                        <p>معلومات مفصلة عن القسم والاساتذة ستُضاف قريباً</p>
-                    </div>
-                </div>
-                
-                <div class="division-card fade-in">
-                    <div class="division-header">
-                        <div class="division-name">4AS</div>
-                        <div class="division-stage">إعدادي</div>
-                    </div>
-                    <div class="division-info">
-                        <div class="info-item">
-                            <span class="info-label">عدد التلاميذ:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">الجدول الزمني:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                    </div>
-                    <div class="info-placeholder">
-                        <p>معلومات مفصلة عن القسم والاساتذة ستُضاف قريباً</p>
-                    </div>
-                </div>
-
-                <!-- المرحلة الثانوية - 3 أقسام -->
-                <div class="division-card fade-in">
-                    <div class="division-header">
-                        <div class="division-name">5C&D</div>
-                        <div class="division-stage">ثانوي</div>
-                    </div>
-                    <div class="division-info">
-                        <div class="info-item">
-                            <span class="info-label">عدد التلاميذ:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">الجدول الزمني:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                    </div>
-                    <div class="info-placeholder">
-                        <p>معلومات مفصلة عن القسم والاساتذة ستُضاف قريباً</p>
-                    </div>
-                </div>
-                
-                <div class="division-card fade-in">
-                    <div class="division-header">
-                        <div class="division-name">6C&D</div>
-                        <div class="division-stage">ثانوي</div>
-                    </div>
-                    <div class="division-info">
-                        <div class="info-item">
-                            <span class="info-label">عدد التلاميذ:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">الجدول الزمني:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                    </div>
-                    <div class="info-placeholder">
-                        <p>معلومات مفصلة عن القسم والاساتذة ستُضاف قريباً</p>
-                    </div>
-                </div>
-                
-                <div class="division-card fade-in">
-                    <div class="division-header">
-                        <div class="division-name">7D الباكالوريا</div>
-                        <div class="division-stage">ثانوي</div>
-                    </div>
-                    <div class="division-info">
-                        <div class="info-item">
-                            <span class="info-label">عدد التلاميذ:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">الجدول الزمني:</span>
-                            <span class="info-value">سيُضاف قريباً</span>
-                        </div>
-                    </div>
-                    <div class="info-placeholder">
-                        <p>معلومات مفصلة عن القسم والاساتذة ستُضاف قريباً</p>
-                    </div>
-                </div>
+                <!-- أقسام المدرسة -->
             </div>
         </div>
     </section>
@@ -261,14 +1137,19 @@
     <section id="generation">
         <div class="container">
             <div class="section-title fade-in">
-                <h2><i class="fas fa-users"></i> الجيل الأول -  باكالوريا 2025</h2>
+                <h2><i class="fas fa-users"></i> الجيل الأول - دفعة باكالوريا 2025</h2>
                 <p>جيل التأسيس الذي يمثل نواة مدرستنا المتميزة</p>
             </div>
             
             <div class="generation-content">
                 <div class="generation-glass fade-in">
                     <div class="generation-img">
+                        <!-- رابط صورة الجيل الأول -->
                         <img src="generation.JPG" alt="الجيل الأول من طلاب بيت الحكمة">
+                        <div class="img-placeholder" style="display:none">
+                            <i class="fas fa-image"></i>
+                            <span>صورة الجيل الأول</span>
+                        </div>
                     </div>
                     <h3>الجيل التأسيسي - باكالوريا 2025</h3>
                     <p>نفتخر بطلابنا من الجيل الأول الذين يشكلون نواة تأسيس مدرستنا. لقد أثبتوا أن التميز ليس مجرد هدف، بل هو أسلوب حياة، ويمثلون بداية رحلة نجاح لمجمع مدارس بيت الحكمة الحرة.</p>
@@ -283,7 +1164,7 @@
     <section id="students">
         <div class="container">
             <div class="section-title fade-in">
-                <h2><i class="fas fa-trophy"></i> الأوائل في الباكالوريا 2025 </h2>
+                <h2><i class="fas fa-trophy"></i> الأوائل في الباكالوريا 2025</h2>
                 <p>نحتفي بطلابنا المتفوقين الذين قدموا أداءً استثنائياً</p>
             </div>
             
@@ -295,7 +1176,89 @@
             </div>
             
             <div class="students-grid" id="overall-tab">
-                <!-- سيتم ملء هذا القسم بالبيانات عبر JavaScript -->
+                <!-- بيانات الطلاب المتفوقين -->
+            </div>
+        </div>
+    </section>
+
+    <div class="wave-divider"></div>
+
+    <!-- Memories Gallery Section -->
+    <section id="memories">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2><i class="fas fa-images"></i> معرض الذكريات</h2>
+                <p> ذاكرة بيت الحكمة</p>
+            </div>
+            
+            <div class="memories-gallery">
+                <div class="memory-card fade-in">
+                    <div class="memory-img">
+                        <!-- رابط صورة الذكرى الأولى -->
+                        <img src="WhatsApp Image 2025-11-21 at 17.49.12_20f4003e.jpg" alt="يوم الرياضيات">
+                        <div class="img-placeholder" style="display:none">
+                            <i class="fas fa-image"></i>
+                            <span>صورة 1</span>
+                        </div>
+                    </div>
+                    <div class="memory-content">
+                        <h3> </h3>
+                        <p> </p>
+                        <span class="memory-date"> </span>
+                    </div>
+                </div>
+                
+                <div class="memory-card fade-in">
+                    <div class="memory-img">
+                        <!-- رابط صورة الذكرى الثانية -->
+                        <img src="im2.jpg" alt="الحفل الختامي">
+                        <div class="img-placeholder" style="display:none">
+                            <i class="fas fa-image"></i>
+                            <span>صورة 2</span>
+                        </div>
+                    </div>
+                    <div class="memory-content">
+                        <h3> </h3>
+                        <p> </p>
+                        <span class="memory-date"> </span>
+                    </div>
+                </div>
+                
+                <div class="memory-card fade-in">
+                    <div class="memory-img">
+                        <!-- رابط صورة الذكرى الثالثة -->
+                        <img src="im3.jpg" alt="رحلة علمية">
+                        <div class="img-placeholder" style="display:none">
+                            <i class="fas fa-image"></i>
+                            <span>صورة 3</span>
+                        </div>
+                    </div>
+                    <div class="memory-content">
+                        <h3> </h3>
+                        <p> </p>
+                        <span class="memory-date"> </span>
+                    </div>
+                </div>
+                
+                <div class="memory-card fade-in">
+                    <div class="memory-img">
+                        <!-- رابط صورة الذكرى الرابعة -->
+                        <img src="im4.jpg" alt="معرض الفنون">
+                        <div class="img-placeholder" style="display:none">
+                            <i class="fas fa-image"></i>
+                            <span>صورة 4</span>
+                        </div>
+                    </div>
+                    <div class="memory-content">
+                        <h3> </h3>
+                        <p> </p>
+                        <span class="memory-date"> </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="memories-btn">
+                <a href="#" class="btn">المزيد من الذكريات</a>
             </div>
         </div>
     </section>
@@ -313,7 +1276,11 @@
             <div class="teachers-grid">
                 <div class="teacher-card fade-in">
                     <div class="teacher-img">
+                        <!-- رابط صورة الأستاذ المصطفى -->
                         <img src="mos.jpg" alt="الأستاذ المصطفى ولد يحيى">
+                        <div class="img-placeholder" style="display:none">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
                     </div>
                     <h3>الأستاذ المصطفى ولد يحيى</h3>
                     <p class="teacher-subject">أستاذ الفيزياء والكيمياء</p>
@@ -321,10 +1288,14 @@
                 
                 <div class="teacher-card fade-in">
                     <div class="teacher-img">
+                        <!-- رابط صورة الأستاذ النهاه -->
                         <img src="NHAH.jpg" alt="الأستاذ النهاه">
+                        <div class="img-placeholder" style="display:none">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
                     </div>
                     <h3>الأستاذ النهاه</h3>
-                    <p class="teacher-subjet">أستاذ الرياضيات</p>
+                    <p class="teacher-subject">أستاذ الرياضيات</p>
                 </div>
             </div>
         </div>
@@ -376,7 +1347,7 @@
                 </div>
                 
                 <div class="contact-form fade-in">
-                    <h3 style="color: white; text-align: center; margin-bottom: 25px;">أرسل رسالة</h3>
+                    <h3>أرسل رسالة</h3>
                     <form id="contactForm">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="الاسم الكامل" required>
@@ -394,7 +1365,7 @@
                             <textarea class="form-control" placeholder="الرسالة" required></textarea>
                         </div>
                         
-                        <button type="submit" class="btn" style="width: 100%;">إرسال الرسالة</button>
+                        <button type="submit" class="btn">إرسال الرسالة</button>
                     </form>
                 </div>
             </div>
@@ -427,6 +1398,304 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // JavaScript Code Here
+        // بيانات الطلاب المتفوقين
+        const studentsData = {
+            overall: [
+                { name: "حنان محمد", grade: "16.10" },
+                { name: "خالد محمد", grade: "16.03" },
+                { name: "محمد لمين محمد يحيى", grade: "15.90" },
+                { name: "ديدو", grade: "15.60" },
+                { name: "محمد شريف", grade: "15.30" },
+                { name: "فاطمة الحسين", grade: "14.93" },
+                { name: "أمامه محمدن", grade: "14.47" },
+                { name: "رباب", grade: "14.44" },
+                { name: "الطشه من أين لك هذا", grade: "14.18" },
+                { name: "محمد فال محمد سالم (عدود لا سمحلنا)", grade: "14.11" }
+            ],
+            science: [
+                { name: "خالد محمد", grade: "18.375" },
+                { name: "ديدو", grade: "18.00" },
+                { name: "يوسف", grade: "17.50" },
+                { name: "محمد شريف", grade: "17.375" },
+                { name: "محمد لمين محمد يحيى", grade: "17.375" },
+                { name: "فاطمة الحسين (رباب)", grade: "16.875" },
+                { name: "أمامة محمدن", grade: "16.625" },
+                { name: "محمد يسلم", grade: "16.625" },
+                { name: "صفية", grade: "16.50" },
+                { name: "حنان محمد", grade: "16.00" }
+            ],
+            physics: [
+                { name: "أمامه محمدن", grade: "19.125" },
+                { name: "محمد لمين محمد يحيى", grade: "18.50" },
+                { name: "خالد محمد", grade: "17.50" },
+                { name: "حنان محمد", grade: "17.375" },
+                { name: "فاطمة الحسين", grade: "17.125" },
+                { name: "عدود", grade: "15.75" },
+                { name: "محمد يسلم", grade: "15.50" },
+                { name: "فاطمة محفوظ", grade: "15.125" },
+                { name: "محمد القطب", grade: "15.00" },
+                { name: "محمد شريف", grade: "15.00" }
+            ],
+            math: [
+                { name: "حنان محمد", grade: "18.375" },
+                { name: "رباب", grade: "17.875" },
+                { name: "مريم محمد", grade: "17.50" },
+                { name: "محمد القطب", grade: "17.375" },
+                { name: "ديدو", grade: "17.25" },
+                { name: "نزيه", grade: "17.25" },
+                { name: "خالد محمد", grade: "17.00" },
+                { name: "فاطمة الحسين", grade: "17.00" },
+                { name: "محمد لمين محمد يحيى", grade: "16.75" },
+                { name: "صفية", grade: "15.625" }
+            ]
+        };
+
+        // DOM جاهز
+        document.addEventListener('DOMContentLoaded', function() {
+            // تهيئة علامات التبويب للطلاب
+            initStudentTabs();
+            
+            // تهيئة التنقل السلس
+            initSmoothScroll();
+            
+            // تهيئة تأثيرات الظهور
+            initScrollAnimations();
+            
+            // تهيئة القائمة المتنقلة
+            initMobileMenu();
+            
+            // تهيئة تغيير اللغة
+            initLanguageToggle();
+            
+            // تهيئة نموذج الاتصال
+            initContactForm();
+            
+            // تهيئة عداد الدرجات
+            initGradeCounters();
+            
+            // تهيئة أقسام المدرسة
+            initDivisions();
+        });
+
+        // وظيفة تهيئة علامات التبويب للطلاب
+        function initStudentTabs() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const studentsGrid = document.getElementById('overall-tab');
+            
+            // عرض البيانات الأولية (المعدل العام)
+            renderStudents('overall');
+            
+            // إضافة مستمعي الأحداث لأزرار علامات التبويب
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // إزالة النشاط من جميع الأزرار
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    // إضافة النشاط للزر المحدد
+                    this.classList.add('active');
+                    // عرض بيانات الطلاب للقسم المحدد
+                    const tab = this.getAttribute('data-tab');
+                    renderStudents(tab);
+                });
+            });
+            
+            // وظيفة عرض بيانات الطلاب
+            function renderStudents(tab) {
+                const students = studentsData[tab];
+                studentsGrid.innerHTML = '';
+                
+                students.forEach((student, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'student-card fade-in';
+                    card.innerHTML = `
+                        <div class="student-rank">${index + 1}</div>
+                        <h3 class="student-name">${student.name}</h3>
+                        <div class="student-grade" data-grade="${student.grade}">0.00</div>
+                    `;
+                    studentsGrid.appendChild(card);
+                });
+                
+                // إعادة تهيئة تأثيرات الظهور للعناصر الجديدة
+                initScrollAnimations();
+                // بدء عدادات الدرجات
+                initGradeCounters();
+            }
+        }
+
+        // وظيفة عداد الدرجات
+        function initGradeCounters() {
+            const gradeElements = document.querySelectorAll('.student-grade[data-grade]');
+            
+            gradeElements.forEach(element => {
+                const targetGrade = parseFloat(element.getAttribute('data-grade'));
+                animateGradeCounter(element, targetGrade);
+            });
+        }
+
+        // وظيفة تحريك عداد الدرجات
+        function animateGradeCounter(element, targetGrade) {
+            let currentGrade = 0;
+            const duration = 1500; // مدة الحركة بالمللي ثانية
+            const increment = targetGrade / (duration / 16); // 60 إطار في الثانية
+            
+            const timer = setInterval(() => {
+                currentGrade += increment;
+                if (currentGrade >= targetGrade) {
+                    currentGrade = targetGrade;
+                    clearInterval(timer);
+                }
+                element.textContent = currentGrade.toFixed(2);
+            }, 16);
+        }
+
+        // وظيفة التنقل السلس
+        function initSmoothScroll() {
+            const navLinks = document.querySelectorAll('nav a, .btn[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#home') {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        const targetSection = document.querySelector(targetId);
+                        if (targetSection) {
+                            const offsetTop = targetSection.offsetTop - 80;
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                    
+                    // إغلاق القائمة المتنقلة إذا كانت مفتوحة
+                    const mobileMenu = document.querySelector('.mobile-menu');
+                    const nav = document.querySelector('nav ul');
+                    if (nav.classList.contains('show')) {
+                        nav.classList.remove('show');
+                        mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            });
+        }
+
+        // وظيفة تأثيرات الظهور عند التمرير
+        function initScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // وظيفة القائمة المتنقلة
+        function initMobileMenu() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu');
+            const nav = document.querySelector('nav ul');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                if (nav.classList.contains('show')) {
+                    nav.classList.remove('show');
+                    this.innerHTML = '<i class="fas fa-bars"></i>';
+                } else {
+                    nav.classList.add('show');
+                    this.innerHTML = '<i class="fas fa-times"></i>';
+                }
+            });
+            
+            // إغلاق القائمة عند النقر خارجها
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('nav') && !e.target.closest('.mobile-menu')) {
+                    nav.classList.remove('show');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        }
+
+        // وظيفة تبديل اللغة
+        function initLanguageToggle() {
+            const langToggle = document.querySelector('.lang-toggle');
+            let currentLang = 'ar';
+            
+            langToggle.addEventListener('click', function() {
+                if (currentLang === 'ar') {
+                    currentLang = 'fr';
+                    this.innerHTML = '<i class="fas fa-globe"></i> FR';
+                } else {
+                    currentLang = 'ar';
+                    this.innerHTML = '<i class="fas fa-globe"></i> AR';
+                }
+            });
+        }
+
+        // وظيفة نموذج الاتصال
+        function initContactForm() {
+            const contactForm = document.getElementById('contactForm');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('شكراً لتواصلكم! سنرد على رسالتكم في أقرب وقت ممكن.');
+                contactForm.reset();
+            });
+        }
+
+        // وظيفة تهيئة أقسام المدرسة
+        function initDivisions() {
+            const divisionsGrid = document.querySelector('.divisions-grid');
+            const divisions = [
+                { name: '5AF', stage: 'ابتدائي' },
+                { name: '6AF', stage: 'ابتدائي' },
+                { name: '1AS', stage: 'إعدادي' },
+                { name: '2AS', stage: 'إعدادي' },
+                { name: '3AS', stage: 'إعدادي' },
+                { name: '4AS', stage: 'إعدادي' },
+                { name: '5C&D', stage: 'ثانوي' },
+                { name: '6C&D', stage: 'ثانوي' },
+                { name: '7D الباكالوريا', stage: 'ثانوي' }
+            ];
+            
+            divisions.forEach(division => {
+                const card = document.createElement('div');
+                card.className = 'division-card fade-in';
+                card.innerHTML = `
+                    <div class="division-header">
+                        <div class="division-name">${division.name}</div>
+                        <div class="division-stage">${division.stage}</div>
+                    </div>
+                    <div class="division-info">
+                        <div class="info-item">
+                            <span class="info-label">عدد التلاميذ:</span>
+                            <span class="info-value">سيُضاف قريباً</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">الجدول الزمني:</span>
+                            <span class="info-value">سيُضاف قريباً</span>
+                        </div>
+                    </div>
+                    <div class="info-placeholder">
+                        <p>معلومات مفصلة عن القسم والاساتذة ستُضاف قريباً</p>
+                    </div>
+                `;
+                divisionsGrid.appendChild(card);
+            });
+            
+            // إعادة تهيئة تأثيرات الظهور للعناصر الجديدة
+            initScrollAnimations();
+        }
+    </script>
 </body>
 </html>
